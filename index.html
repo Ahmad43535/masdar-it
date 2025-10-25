@@ -171,23 +171,173 @@
         .bg-gradient-radial {
             background: radial-gradient(circle, var(--tw-gradient-stops));
         }
+
+        /* Responsive Media Queries */
+        @media (max-width: 640px) {
+            /* Small screens */
+            .grid {
+                gap: 1rem;
+            }
+            
+            section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+            
+            .service-icon:hover {
+                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.1) rotate(360deg) !important;
+            }
+            
+            /* Improved typography for small screens */
+            h1, h2, h3 {
+                line-height: 1.3;
+            }
+            
+            /* Adjust spacing for small screens */
+            .p-8, .p-10, .p-12 {
+                padding: 1rem !important;
+            }
+            
+            .m-8, .m-10, .m-12 {
+                margin: 1rem !important;
+            }
+            
+            /* Better grid layouts for small screens */
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+            
+            /* Adjust flex layouts for small screens */
+            .flex-row {
+                flex-direction: column;
+            }
+            
+            /* Center content on small screens */
+            .text-right, .text-left {
+                text-align: center;
+            }
+            
+            /* Reduce icon sizes on small screens */
+            .w-16, .w-20, .w-24 {
+                width: 3rem !important;
+            }
+            
+            .h-16, .h-20, .h-24 {
+                height: 3rem !important;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+            /* Medium screens */
+            .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .country-card:hover, .client-card:hover {
+                transform: translateY(-5px) scale(1.03);
+            }
+            
+            /* Adjust spacing for medium screens */
+            .p-10, .p-12 {
+                padding: 1.5rem !important;
+            }
+            
+            .m-10, .m-12 {
+                margin: 1.5rem !important;
+            }
+            
+            /* Better typography for medium screens */
+            h1, h2, h3 {
+                line-height: 1.4;
+            }
+            
+            /* Adjust icon sizes on medium screens */
+            .w-20, .w-24 {
+                width: 4rem !important;
+            }
+            
+            .h-20, .h-24 {
+                height: 4rem !important;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Large screens */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .animate-float {
+                animation-duration: 4s;
+            }
+            
+            /* Adjust spacing for large screens */
+            .p-12 {
+                padding: 2rem !important;
+            }
+            
+            .m-12 {
+                margin: 2rem !important;
+            }
+        }
+        
+        /* Fix for flex layouts on small screens */
+        @media (max-width: 640px) {
+            .flex-wrap {
+                flex-wrap: wrap;
+            }
+            
+            .flex-col-reverse {
+                flex-direction: column-reverse;
+            }
+            
+            .justify-center {
+                justify-content: center;
+            }
+            
+            .items-center {
+                align-items: center;
+            }
+            
+            .text-center {
+                text-align: center;
+            }
+            
+            /* Improve button layouts on small screens */
+            .btn, button {
+                width: 100%;
+                margin-bottom: 0.5rem;
+                justify-content: center;
+            }
+            
+            /* Improve spacing between sections */
+            section + section {
+                margin-top: 2rem;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sm:fixed w-full top-0 z-50">
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
+            <div class="flex justify-between items-center h-16 sm:h-20 md:h-24">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         <img src="https://i.ibb.co/S4GwfXdq/image.png" alt="مصدر للتحول الرقمي"
-                            class="h-28 w-auto logo-interactive cursor-pointer"
+                            class="h-16 sm:h-20 md:h-28 w-auto logo-interactive cursor-pointer"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <h1 class="text-4xl font-bold text-indigo-600 logo-interactive cursor-pointer"
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-600 logo-interactive cursor-pointer"
                             style="display: none;">مصدر</h1>
                     </div>
                 </div>
+                <!-- Desktop Menu -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4 space-x-reverse">
                         <a href="#home"
@@ -207,34 +357,99 @@
                             معنا</a>
                     </div>
                 </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">الرئيسية</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">من
+                        نحن</a>
+                    <a href="#services"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">خدماتنا</a>
+                    <a href="#portfolio"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">أعمالنا</a>
+                    <a href="#clients"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">عملاؤنا
+                        المميزون</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-base font-medium transition-colors block text-right">تواصل
+                        معنا</a>
+                </div>
             </div>
         </div>
     </nav>
+    
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            
+            // Toggle mobile menu visibility
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Add smooth scrolling and auto-close functionality to mobile menu links
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close the mobile menu
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Get the target section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // Smooth scroll to the section
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- End of mobile menu scripts -->
 
     <!-- Hero Section -->
     <section id="home" class="gradient-bg min-h-full pt-16 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="text-white">
-                    <h1 class="text-5xl font-bold mb-6 leading-tight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
+                <div class="text-white text-center lg:text-right order-2 lg:order-1 mt-6 lg:mt-0">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
                         مصدر للتحول الرقمي
                         <span class="block text-yellow-300">وتكنولوجيا المعلومات</span>
                     </h1>
-                    <p class="text-xl mb-8 text-gray-100 leading-relaxed">
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-100 leading-relaxed px-2 sm:px-0">
                         شركة ناشئة متخصصة في تطوير حلول DevOps وSaaS المتقدمة لتمكين الشركات من مواكبة التحول الرقمي
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-end">
                         <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
-                            class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+                            class="bg-yellow-400 text-gray-900 px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold hover:bg-yellow-300 transition-colors w-full sm:w-auto">
                             اكتشف خدماتنا
                         </button>
                         <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
-                            class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
+                            class="border-2 border-white text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-semibold hover:bg-white hover:text-gray-900 transition-colors w-full sm:w-auto">
                             تواصل معنا
                         </button>
                     </div>
                 </div>
-                <div class="animate-float flex justify-center items-center">
+                <div class="animate-float flex justify-center items-center order-1 lg:order-2">
                     <div class="relative" id="heroLogoContainer">
                         <!-- Soft white gradient background -->
                         <div
@@ -248,16 +463,16 @@
                         </div>
 
                         <!-- Logo container -->
-                        <div class="relative p-8">
+                        <div class="relative p-2 sm:p-4 md:p-6 lg:p-8">
                             <img src="https://i.ibb.co/S4GwfXdq/image.png" alt="مصدر للتحول الرقمي"
-                                class="h-96 w-auto mx-auto logo-interactive cursor-pointer transform hover:scale-110 transition-all duration-500 relative z-10"
+                                class="h-36 sm:h-48 md:h-64 lg:h-80 w-auto mx-auto logo-interactive cursor-pointer transform hover:scale-110 transition-all duration-500 relative z-10"
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 
                             <!-- Fallback logo -->
-                            <div class="h-96 w-96 flex items-center justify-center logo-interactive cursor-pointer transform hover:scale-110 transition-all duration-500 relative z-10"
+                            <div class="h-36 sm:h-48 md:h-64 lg:h-80 w-auto sm:w-48 md:w-64 lg:w-80 flex items-center justify-center logo-interactive cursor-pointer transform hover:scale-110 transition-all duration-500 relative z-10"
                                 style="display: none;">
                                 <h1
-                                    class="text-9xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                                    class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                                     مصدر</h1>
                             </div>
                         </div>
@@ -266,61 +481,89 @@
                         <div id="serviceIcons"
                             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 transition-all duration-500 pointer-events-none">
                             <!-- DevOps Icon -->
-                            <div class="service-icon absolute w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
+                            <div class="service-icon absolute w-14 sm:w-16 md:w-20 h-14 sm:h-16 md:h-20 bg-blue-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
                                 style="transform: translate(-50%, -50%) scale(0) rotate(0deg);" data-angle="0"
-                                data-radius="120">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                data-radius="100" data-radius-sm="80" data-radius-md="100" data-radius-lg="120">
+                                <svg class="w-7 sm:w-8 md:w-10 h-7 sm:h-8 md:h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path
                                         d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                                 </svg>
                                 <div
-                                    class="tooltip absolute top-full mt-3 bg-gray-900 text-white px-3 py-2 rounded text-sm whitespace-nowrap opacity-0 z-30">
+                                    class="tooltip absolute top-full mt-2 sm:mt-3 bg-gray-900 text-white px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm whitespace-nowrap opacity-0 z-30">
                                     DevOps
                                 </div>
                             </div>
 
                             <!-- CI/CD Icon -->
-                            <div class="service-icon absolute w-20 h-20 bg-green-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
+                            <div class="service-icon absolute w-12 sm:w-14 md:w-16 lg:w-20 h-12 sm:h-14 md:h-16 lg:h-20 bg-green-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
                                 style="transform: translate(-50%, -50%) scale(0) rotate(0deg);" data-angle="90"
-                                data-radius="120">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                data-radius="100" data-radius-sm="70" data-radius-md="90" data-radius-lg="120">
+                                <svg class="w-6 sm:w-7 md:w-8 lg:w-10 h-6 sm:h-7 md:h-8 lg:h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z"
                                         clip-rule="evenodd" />
                                 </svg>
                                 <div
-                                    class="tooltip absolute top-full mt-3 bg-gray-900 text-white px-3 py-2 rounded text-sm whitespace-nowrap opacity-0 z-30">
+                                    class="tooltip absolute top-full mt-1 sm:mt-2 md:mt-3 bg-gray-900 text-white px-1 sm:px-2 md:px-3 py-1 rounded text-xs whitespace-nowrap opacity-0 z-30">
                                     CI/CD
                                 </div>
                             </div>
 
                             <!-- Cloud Icon -->
-                            <div class="service-icon absolute w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
+                            <div class="service-icon absolute w-12 sm:w-14 md:w-16 lg:w-20 h-12 sm:h-14 md:h-16 lg:h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
                                 style="transform: translate(-50%, -50%) scale(0) rotate(0deg);" data-angle="180"
-                                data-radius="120">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                data-radius="100" data-radius-sm="70" data-radius-md="90" data-radius-lg="120">
+                                <svg class="w-6 sm:w-7 md:w-8 lg:w-10 h-6 sm:h-7 md:h-8 lg:h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path
                                         d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3z" />
                                 </svg>
                                 <div
-                                    class="tooltip absolute top-full mt-3 bg-gray-900 text-white px-3 py-2 rounded text-sm whitespace-nowrap opacity-0 z-30">
+                                    class="tooltip absolute top-full mt-1 sm:mt-2 md:mt-3 bg-gray-900 text-white px-1 sm:px-2 md:px-3 py-1 rounded text-xs whitespace-nowrap opacity-0 z-30">
                                     السحابة
                                 </div>
                             </div>
 
                             <!-- Optimization Icon -->
-                            <div class="service-icon absolute w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
+                            <div class="service-icon absolute w-12 sm:w-14 md:w-16 lg:w-20 h-12 sm:h-14 md:h-16 lg:h-20 bg-orange-500 rounded-full flex items-center justify-center shadow-xl transform cursor-pointer"
                                 style="transform: translate(-50%, -50%) scale(0) rotate(0deg);" data-angle="270"
-                                data-radius="120">
-                                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                data-radius="100" data-radius-sm="70" data-radius-md="90" data-radius-lg="120">
+                                <svg class="w-6 sm:w-7 md:w-8 lg:w-10 h-6 sm:h-7 md:h-8 lg:h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                                 <div
-                                    class="tooltip absolute top-full mt-3 bg-gray-900 text-white px-3 py-2 rounded text-sm whitespace-nowrap opacity-0 z-30">
+                                    class="tooltip absolute top-full mt-1 sm:mt-2 md:mt-3 bg-gray-900 text-white px-1 sm:px-2 md:px-3 py-1 rounded text-xs whitespace-nowrap opacity-0 z-30">
                                     التحسين
                                 </div>
                             </div>
                         </div>
+                        
+                        <script>
+                            // Adjust service icons radius based on screen size
+                            function updateServiceIconsRadius() {
+                                const serviceIcons = document.querySelectorAll('.service-icon');
+                                let radius = 120; // Default for large screens
+                                
+                                if (window.innerWidth < 640) {
+                                    radius = 70; // Small screens
+                                } else if (window.innerWidth < 768) {
+                                    radius = 90; // Medium screens
+                                } else if (window.innerWidth < 1024) {
+                                    radius = 100; // Large screens
+                                }
+                                
+                                serviceIcons.forEach(icon => {
+                                    const angle = icon.getAttribute('data-angle');
+                                    const radian = angle * Math.PI / 180;
+                                    const x = Math.cos(radian) * radius;
+                                    const y = Math.sin(radian) * radius;
+                                    icon.style.setProperty('--x', x + 'px');
+                                    icon.style.setProperty('--y', y + 'px');
+                                });
+                            }
+                            
+                            window.addEventListener('resize', updateServiceIconsRadius);
+                            document.addEventListener('DOMContentLoaded', updateServiceIconsRadius);
+                        </script>
 
                         <!-- Floating particles -->
                         <div class="absolute top-4 right-4 w-3 h-3 bg-yellow-400 rounded-full animate-bounce"
@@ -364,28 +607,28 @@
             </div>
 
             <!-- Vision, Mission, Values Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
                 <!-- Vision -->
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-indigo-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center ml-4">
-                            <span class="text-2xl">🎯</span>
+                <div class="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg card-hover border-t-4 border-indigo-500">
+                    <div class="flex items-center mb-3 sm:mb-4 md:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-indigo-100 rounded-lg flex items-center justify-center ml-2 sm:ml-3 md:ml-4">
+                            <span class="text-lg sm:text-xl md:text-2xl">🎯</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">رؤيتنا</h3>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900">رؤيتنا</h3>
                     </div>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
                         التحوّل الرقمي:
                       نساعد الشركات على الانتقال إلى بيئة رقمية متكاملة تجعل العمل أسهل وأكثر كفاءة.
                      </p>
-                     <p class="text-gray-600 leading-relaxed mb-4"> 
+                     <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4"> 
                       حلول SaaS لمزوّدي الخدمات:
                       نوفّر أنظمة جاهزة وسهلة الإدارة تمكّن مزوّدي الخدمات من تقديم تطبيقاتهم لعملائهم بثبات وأمان.
                        </p>
-                     <p class="text-gray-600 leading-relaxed mb-4"> 
+                     <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4"> 
                       منهجيات DevOps:
                        نطوّر بيئات عمل تجمع بين التطوير والتشغيل لتسريع التحديثات وتحسين جودة الأنظمة.
                          </p>
-                     <p class="text-gray-600 leading-relaxed mb-4">
+                     <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         نظام Odoo:
                         نخصّص ونربط نظام Odoo ليتناسب مع طبيعة كل شركة ويساعدها في إدارة أعمالها بسهولة.
                        </p>
@@ -394,123 +637,123 @@
                         </div>
 
                 <!-- Mission -->
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-purple-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center ml-4">
-                            <span class="text-2xl">💡</span>
+                <div class="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg card-hover border-t-4 border-purple-500">
+                    <div class="flex items-center mb-3 sm:mb-4 md:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-purple-100 rounded-lg flex items-center justify-center ml-2 sm:ml-3 md:ml-4">
+                            <span class="text-lg sm:text-xl md:text-2xl">💡</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">رسالتنا</h3>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900">رسالتنا</h3>
                     </div>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         تمكين الشركات من التحوّل الرقمي الكامل عبر:
                     </p>
-                    <ul class="text-sm text-gray-600 space-y-2">
+                    <ul class="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-2">
                         <li class="flex items-start"><span
-                                class="w-2 h-2 bg-purple-500 rounded-full mt-2 ml-2 flex-shrink-0"></span>تطوير حلول
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full mt-1.5 sm:mt-2 ml-1.5 sm:ml-2 flex-shrink-0"></span>تطوير حلول
                             SaaS قابلة للتوسع وسهلة الإدارة</li>
                         <li class="flex items-start"><span
-                                class="w-2 h-2 bg-purple-500 rounded-full mt-2 ml-2 flex-shrink-0"></span>تطبيق منهجيات
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full mt-1.5 sm:mt-2 ml-1.5 sm:ml-2 flex-shrink-0"></span>تطبيق منهجيات
                             DevOps لتحسين سرعة وكفاءة التطوير</li>
                         <li class="flex items-start"><span
-                                class="w-2 h-2 bg-purple-500 rounded-full mt-2 ml-2 flex-shrink-0"></span>تخصيص ودمج
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full mt-1.5 sm:mt-2 ml-1.5 sm:ml-2 flex-shrink-0"></span>تخصيص ودمج
                             نظام Odoo لتلبية احتياجات العملاء المختلفة</li>
                         <li class="flex items-start"><span
-                                class="w-2 h-2 bg-purple-500 rounded-full mt-2 ml-2 flex-shrink-0"></span>تقديم دعم
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full mt-1.5 sm:mt-2 ml-1.5 sm:ml-2 flex-shrink-0"></span>تقديم دعم
                             واستشارات تقنية تضمن استمرارية النجاح الرقمي</li>
                     </ul>
                 </div>
 
                 <!-- Values -->
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-green-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center ml-4">
-                            <span class="text-2xl">⚙️</span>
+                <div class="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg card-hover border-t-4 border-green-500 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-3 sm:mb-4 md:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-100 rounded-lg flex items-center justify-center ml-2 sm:ml-3 md:ml-4">
+                            <span class="text-lg sm:text-xl md:text-2xl">⚙️</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900">قيمنا</h3>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900">قيمنا</h3>
                     </div>
-                    <div class="space-y-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
-                            <h4 class="font-semibold text-gray-900 mb-1">الابتكار</h4>
-                            <p class="text-sm text-gray-600">نسعى باستمرار لتقديم أفكار وتقنيات جديدة تواكب تطورات السوق
+                            <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">الابتكار</h4>
+                            <p class="text-xs sm:text-sm text-gray-600">نسعى باستمرار لتقديم أفكار وتقنيات جديدة تواكب تطورات السوق
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-900 mb-1">الجودة</h4>
-                            <p class="text-sm text-gray-600">نلتزم بمعايير عالية في كل مشروع ننفذه</p>
+                            <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">الجودة</h4>
+                            <p class="text-xs sm:text-sm text-gray-600">نلتزم بمعايير عالية في كل مشروع ننفذه</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-900 mb-1">الشفافية</h4>
-                            <p class="text-sm text-gray-600">نبني علاقات قائمة على الثقة والمصداقية مع عملائنا</p>
+                            <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">الشفافية</h4>
+                            <p class="text-xs sm:text-sm text-gray-600">نبني علاقات قائمة على الثقة والمصداقية مع عملائنا</p>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-900 mb-1">الاستدامة</h4>
-                            <p class="text-sm text-gray-600">نطوّر حلول طويلة الأمد تدعم نمو الشركات واستقرارها</p>
+                            <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">الاستدامة</h4>
+                            <p class="text-xs sm:text-sm text-gray-600">نطوّر حلول طويلة الأمد تدعم نمو الشركات واستقرارها</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Stats and Quote Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+                <div class="space-y-4 sm:space-y-6 md:space-y-8">
                     <div class="text-center">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">خبرتنا في الأرقام</h3>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">خبرتنا في الأرقام</h3>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover">
-                            <div class="text-3xl font-bold text-indigo-600 mb-2">+50</div>
-                            <div class="text-gray-600">عميل راضٍ</div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-xl shadow-lg text-center card-hover">
+                            <div class="text-2xl sm:text-3xl font-bold text-indigo-600 mb-1 sm:mb-2">+50</div>
+                            <div class="text-sm sm:text-base text-gray-600">عميل راضٍ</div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover">
-                            <div class="text-3xl font-bold text-purple-600 mb-2">+10</div>
-                            <div class="text-gray-600">دول نخدمها</div>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-xl shadow-lg text-center card-hover">
+                            <div class="text-2xl sm:text-3xl font-bold text-purple-600 mb-1 sm:mb-2">+10</div>
+                            <div class="text-sm sm:text-base text-gray-600">دول نخدمها</div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover">
-                            <div class="text-3xl font-bold text-green-600 mb-2">50+</div>
-                            <div class="text-gray-600">مشروع مكتمل</div>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-xl shadow-lg text-center card-hover">
+                            <div class="text-2xl sm:text-3xl font-bold text-green-600 mb-1 sm:mb-2">50+</div>
+                            <div class="text-sm sm:text-base text-gray-600">مشروع مكتمل</div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-xl shadow-lg text-center card-hover">
-                            <div class="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-                            <div class="text-gray-600">دعم فني</div>
+                        <div class="bg-white p-3 sm:p-4 md:p-6 rounded-xl shadow-lg text-center card-hover">
+                            <div class="text-2xl sm:text-3xl font-bold text-orange-600 mb-1 sm:mb-2">24/7</div>
+                            <div class="text-sm sm:text-base text-gray-600">دعم فني</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-4 sm:space-y-6">
                     <!-- Company Philosophy -->
-                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 rounded-xl text-white">
-                        <div class="flex items-center mb-4">
-                            <span class="text-3xl ml-4">💬</span>
-                            <h4 class="text-xl font-bold">فلسفتنا</h4>
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 sm:p-6 md:p-8 rounded-xl text-white">
+                        <div class="flex items-center mb-2 sm:mb-4">
+                            <span class="text-2xl sm:text-3xl ml-2 sm:ml-4">💬</span>
+                            <h4 class="text-lg sm:text-xl font-bold">فلسفتنا</h4>
                         </div>
-                        <p class="text-indigo-100 leading-relaxed text-lg">
+                        <p class="text-indigo-100 leading-relaxed text-base sm:text-lg">
                             في Masder نضع التكنولوجيا في خدمة الإنسان، ونؤمن أن النجاح الحقيقي يبدأ من نظام ذكي يدعم
                             تطور شركتك
                         </p>
                     </div>
 
                     <!-- Why Choose Us -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-                        <h4 class="text-lg font-bold mb-4 text-gray-900">لماذا تختارنا؟</h4>
-                        <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover">
+                        <h4 class="text-base sm:text-lg font-bold mb-2 sm:mb-4 text-gray-900">لماذا تختارنا؟</h4>
+                        <div class="grid grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
                             <div class="flex items-center">
-                                <span class="w-2 h-2 bg-indigo-500 rounded-full ml-2"></span>
+                                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-indigo-500 rounded-full ml-1.5 sm:ml-2"></span>
                                 <span class="text-gray-600">خبرة عملية واسعة</span>
                             </div>
                             <div class="flex items-center">
-                                <span class="w-2 h-2 bg-purple-500 rounded-full ml-2"></span>
+                                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full ml-1.5 sm:ml-2"></span>
                                 <span class="text-gray-600">حلول مخصصة</span>
                             </div>
                             <div class="flex items-center">
-                                <span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>
+                                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full ml-1.5 sm:ml-2"></span>
                                 <span class="text-gray-600">دعم مستمر</span>
                             </div>
                             <div class="flex items-center">
-                                <span class="w-2 h-2 bg-orange-500 rounded-full ml-2"></span>
+                                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-1.5 sm:ml-2"></span>
                                 <span class="text-gray-600">شراكة طويلة المدى</span>
                             </div>
                         </div>
@@ -521,105 +764,105 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
+    <section id="services" class="py-12 sm:py-16 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">خدماتنا المتخصصة</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">خدماتنا المتخصصة</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                     حلول تقنية متطورة مبنية على خبرة عملية واسعة في التحول الرقمي وأحدث التقنيات السحابية
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 <!-- Service 1: DevOps SaaS Development -->
                 <div
-                    class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-xl card-hover border-t-4 border-blue-500">
-                    <div class="tech-icon w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    class="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 md:p-8 rounded-xl card-hover border-t-4 border-blue-500">
+                    <div class="tech-icon w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 rounded-lg flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">DevOps SaaS Development</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">DevOps SaaS Development</h3>
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         بناء حلول SaaS قائمة على مبادئ DevOps  المتقدمة مع التكامل للأتمتة والمراقبة  
                       </p>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>CI/CD
+                    <ul class="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-2">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>CI/CD
                             Pipeline متقدمة</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>أتمتة
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>أتمتة
                             البنية التحتية</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>Infrastructure as a Service (IaaS)
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>Infrastructure as a Service (IaaS)
                              </li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>Platform as a Service (PaaS)
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>Platform as a Service (PaaS)
                              </li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>مراقبة
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>مراقبة
                             الأداء المستمرة</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>بيئات
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>بيئات
                             Testing/Staging/Production</li>
                         <li class="flex items-center"><span
-                                class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>Auto-scaling ذكي</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>أمان
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>Auto-scaling ذكي</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>أمان
                             متقدم وBackup تلقائي</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full ml-2"></span>تحسين
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full ml-1.5 sm:ml-2"></span>تحسين
                             التكاليف</li>
                     </ul>
                 </div>
 
                 <!-- Service 2: Odoo Integration -->
                 <div
-                    class="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-xl card-hover border-t-4 border-green-500">
-                    <div class="tech-icon w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    class="bg-gradient-to-br from-green-50 to-emerald-100 p-4 sm:p-6 md:p-8 rounded-xl card-hover border-t-4 border-green-500">
+                    <div class="tech-icon w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-500 rounded-lg flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
                                 d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 0a1 1 0 100 2h.01a1 1 0 100-2H9zm2 0a1 1 0 100 2h.01a1 1 0 100-2H11zm2 0a1 1 0 100 2h.01a1 1 0 100-2H13zm-4-3a1 1 0 100 2h.01a1 1 0 100-2H9zm2 0a1 1 0 100 2h.01a1 1 0 100-2H11zm2 0a1 1 0 100 2h.01a1 1 0 100-2H13z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Odoo Integration & Customization</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Odoo Integration & Customization</h3>
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         تخصيص وتطوير نظام Odoo   ليتناسب مع طبيعة نشاطك ولاى نوع من الشركات سواء كانت شركة محاسبة، تجارة، تصنيع، أو أي مجال آخر
                        </p>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>تطوير
+                    <ul class="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-2">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full ml-1.5 sm:ml-2"></span>تطوير
                             موديولات مخصصة</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>ربط
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full ml-1.5 sm:ml-2"></span>ربط
                             الأنظمة الخارجية</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>تحسين
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full ml-1.5 sm:ml-2"></span>تحسين
                             الأداء والسرعة</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full ml-2"></span>دعم
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full ml-1.5 sm:ml-2"></span>دعم
                             متعدد العملات</li>
                     </ul>
                 </div>
 
                 <!-- Service 3: Cloud Infrastructure -->
                 <div
-                    class="bg-gradient-to-br from-purple-50 to-violet-100 p-8 rounded-xl card-hover border-t-4 border-purple-500">
-                    <div class="tech-icon w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    class="bg-gradient-to-br from-purple-50 to-violet-100 p-4 sm:p-6 md:p-8 rounded-xl card-hover border-t-4 border-purple-500">
+                    <div class="tech-icon w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-purple-500 rounded-lg flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Cloud Computing Solutions
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Cloud Computing Solutions
                       </h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                       نقدم  حلول حوسبة  سحابية متكاملة تلبي  احتياجات المؤسسات  بمختلف أحجامها،  من خلال بنية  تحتية ذكية تدعم  الأتمتة الكاملة  للعمليات لضمان الأداء  العالي والاستقرار المستمر.     
-                      <p class="text-gray-600 leading-relaxed mb-4"></p>
+                      <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4"></p>
                         خدماتنا تشمل:
                     </p>
-                    <ul class="text-sm text-gray-600 space-y-2">
+                    <ul class="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-2">
                         <li class="flex items-center"><span
-                                class="w-2 h-2 bg-purple-500 rounded-full ml-2"></span> Cloud Providers: إدارة واستضافة الخدمات السحابية عبر مزودي الخدمة العالميين.
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full ml-1.5 sm:ml-2"></span> Cloud Providers: إدارة واستضافة الخدمات السحابية عبر مزودي الخدمة العالميين.
  
-                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full ml-2"></span>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full ml-1.5 sm:ml-2"></span>
                              On-Premise: إنشاء وتشغيل بيئات سحابية خاصة داخل مراكز بيانات العملاء.
                          </li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full ml-2"></span>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full ml-1.5 sm:ml-2"></span>
                             Cloud-Native: تطوير ونشر التطبيقات السحابية باستخدام أحدث التقنيات لتوفير المرونة وقابلية التوسع.
                           </li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full ml-2"></span>
-                            كما نقدم خدمات الحوسبة السحابية من خلال مراكز البيانات الخاصة بنا، مما يمنح عملاءنا تحكمًا كاملًا في البنية التحتية مع الحفاظ على أعلى معايير الأمان والاعتمادية
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full ml-1.5 sm:ml-2"></span>
+                            كما نقدم خدمات الحوسبة السحابية من خلال مراكز البيانات الخاصة بنا، مما يمنح عملاءنا تحكمًا كاملًا في البنية التحتية مع الحفاظ على أعلى معايير الأمان والاعتمادية
                           </li>
                     </ul>
 
@@ -627,39 +870,39 @@
 
                 <!-- Service 4: Monitoring & Support -->
                 <div
-                    class="bg-gradient-to-br from-orange-50 to-amber-100 p-8 rounded-xl card-hover border-t-4 border-orange-500">
-                    <div class="tech-icon w-16 h-16 bg-orange-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    class="bg-gradient-to-br from-orange-50 to-amber-100 p-4 sm:p-6 md:p-8 rounded-xl card-hover border-t-4 border-orange-500">
+                    <div class="tech-icon w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-500 rounded-lg flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Monitoring & Technical Support</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Monitoring & Technical Support</h3>
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         مراقبة شاملة للأنظمة مع دعم فني متكامل وحلول استباقية للمشاكل التقنية.
                     </p>
-                    <ul class="text-sm text-gray-600 space-y-2">
+                    <ul class="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-2">
                         <li class="flex items-center"><span
-                                class="w-2 h-2 bg-orange-500 rounded-full ml-2"></span>مراقبة 24/7 للأنظمة</li>
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-1.5 sm:ml-2"></span>مراقبة 24/7 للأنظمة</li>
                         <li class="flex items-center"><span
-                                class="w-2 h-2 bg-orange-500 rounded-full ml-2"></span>معالجة سريعة للأخطاء</li>
-                        <li class="flex items-center"><span class="w-2 h-2 bg-orange-500 rounded-full ml-2"></span>تحسين
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-1.5 sm:ml-2"></span>معالجة سريعة للأخطاء</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-1.5 sm:ml-2"></span>تحسين
                             الأداء المستمر</li>
                         <li class="flex items-center"><span
-                                class="w-2 h-2 bg-orange-500 rounded-full ml-2"></span>تقارير تحليلية مفصلة</li>
+                                class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-1.5 sm:ml-2"></span>تقارير تحليلية مفصلة</li>
                     </ul>
                 </div>
 
                 <!-- Service 5: Digital Transformation Consulting -->
                 <div
-                    class="bg-gradient-to-br from-teal-50 to-cyan-100 p-8 rounded-xl card-hover border-t-4 border-teal-500 lg:col-span-2 xl:col-span-1">
-                    <div class="tech-icon w-16 h-16 bg-teal-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    class="bg-gradient-to-br from-teal-50 to-cyan-100 p-4 sm:p-6 md:p-8 rounded-xl card-hover border-t-4 border-teal-500 lg:col-span-2 xl:col-span-1">
+                    <div class="tech-icon w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-teal-500 rounded-lg flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Digital Transformation Consulting</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Digital Transformation Consulting</h3>
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed mb-2 sm:mb-4">
                         استشارات شاملة للتحول الرقمي مع وضع خريطة طريق واضحة لتحقيق النجاح المستدام.
                     </p>
                     <ul class="text-sm text-gray-600 space-y-2">
@@ -678,11 +921,11 @@
             <!-- Call to Action -->
             <div class="text-center mt-16">
                 <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white">
-                    <h3 class="text-2xl font-bold mb-4">هل تريد معرفة المزيد عن خدماتنا؟</h3>
-                    <p class="text-lg mb-6 opacity-90">احصل على استشارة مجانية لتحديد أفضل الحلول التقنية لشركتك</p>
+                    <h3 class="text-2xl font-bold mb-4">جاهز تبدا رحلة التحول الرقمى؟</h3>
+                    <p class="text-lg mb-6 opacity-90">تواصل مع فريق Masder وخلينا نساعدك فى بناء مستقبل شركتك الرقمى </p>
                     <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
                         class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        احجز استشارة مجانية
+                        تواصل معنا وابدا الان 
                     </button>
                 </div>
             </div>
@@ -783,12 +1026,12 @@
                             <a href="http://bluewhale.it.com:8069" target="_blank" class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-r-4 border-green-400 client-card bounce-in"
                                 style="animation-delay: 0.2s;">
                                 <h4 class="font-bold text-gray-900 mb-2 text-lg">الحوت الأزرق لتقنية المعلومات</h4>
-                                <p class="text-gray-600">خدمات كلاود ونظام Zatka و خدمة MySaaS وتهيئة أنظمة مبيعات ومشتريات وحسابات و Development</p>
+                                <p class="text-gray-600">خدمات كلاود ونظام ZATCA - eServices و خدمة MySaaS وتهيئة أنظمة مبيعات ومشتريات وحسابات و Development</p>
                              </a>
                             <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-r-4 border-green-600 client-card bounce-in"
                                 style="animation-delay: 0.3s;">
                                 <h4 class="font-bold text-gray-900 mb-2 text-lg">جمال لتقنية المعلومات</h4>
-                                <p class="text-gray-600">نظام مشتريات ومبيعات وحسابات HR  وصرافة</p>
+                                <p class="text-gray-600">نظام مشتريات ومبيعات وحسابات و  HR   وصرافة</p>
                             </div>
                             <a href="https://hotelstask.com/" target="_blank"
                                 class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-r-4 border-green-500 client-card bounce-in"
@@ -1303,7 +1546,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">ساعات العمل</h3>
-                            <p class="text-gray-600">الأحد - الخميس: 5:00 ص - 8:00 م</p>
+                            <p class="text-gray-600">الأحد - الخميس: 8:00 ص - 5:00 م</p>
                             <p class="text-gray-600">الجمعة - السبت: مغلق</p>
                         </div>
                     </div>
